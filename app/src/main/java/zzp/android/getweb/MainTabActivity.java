@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SearchView;
-import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.Toast;
 

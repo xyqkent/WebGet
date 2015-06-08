@@ -17,7 +17,6 @@
 package zzp.android.getweb;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
@@ -34,21 +33,17 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-
 import android.view.KeyEvent;
-
 import android.view.View;
 
 import android.widget.Toast;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-import zzp.android.getweb.OwnClass.UserFunction;
+
 import zzp.android.getweb.WiFiDirectClass.DeviceDetailFragment;
 import zzp.android.getweb.WiFiDirectClass.DeviceListFragment;
-import zzp.android.getweb.WiFiDirectClass.ReceiveListFragment;
 import zzp.android.getweb.WiFiDirectClass.SendListFragment;
 import zzp.android.getweb.WiFiDirectClass.WiFiDirectBroadcastReceiver;
 
@@ -69,13 +64,10 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
     private final IntentFilter intentFilter = new IntentFilter();
     private Channel channel;
     private BroadcastReceiver receiver = null;
-    private Context mContext;
     public static Handler mHandler;
-    UserFunction uf = new UserFunction();
 
     private ViewPager viewPager;
     private List<View> lists = new ArrayList<View>();
-    private ViewPagerAdapter adapter;
 
     /**
      * @param isWifiP2pEnabled the isWifiP2pEnabled to set
@@ -88,7 +80,6 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wifi_direct);
-        mContext = this;
 
         // add necessary intent values to be matched.
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
@@ -96,13 +87,13 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
 
+        //将三个wifidirect界面整合到一个Activity中
         lists.add(getLayoutInflater().inflate(R.layout.wifi_direct_tab_device, null));
         lists.add(getLayoutInflater().inflate(R.layout.wifi_direct_tab_send, null));
         lists.add(getLayoutInflater().inflate(R.layout.wifi_direct_tab_receive, null));
 
-        adapter = new ViewPagerAdapter(lists);
         viewPager = (ViewPager) findViewById(R.id.vPager);
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(new ViewPagerAdapter(lists));
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -111,12 +102,20 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
 
             @Override
             public void onPageSelected(int i) {
-
-
-
-
-
-                
+                String title = "未知";
+                switch (i) {
+                    case 0:
+                        title = "无线传输";
+                        break;
+                    case 1:
+                        title = "已发送文件";
+                        break;
+                    case 2:
+                        title = "已接收文件";
+                        break;
+                }
+                //Handler,arg1,arg2,obj
+                Message.obtain(MainTabActivity.mHandler, 1, 2, -1, title).sendToTarget();
             }
 
             @Override
