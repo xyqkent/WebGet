@@ -124,7 +124,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mContentView = inflater.inflate(R.layout.wifi_direct_device_detail, null);
+        mContentView = inflater.inflate(R.layout.wifi_direct_device_detail_frag, null);
         mContext = getActivity();
         return mContentView;
     }

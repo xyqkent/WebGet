@@ -153,7 +153,7 @@ public class SendListFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContentView = inflater.inflate(R.layout.wifi_direct_send_list, null);
+        mContentView = inflater.inflate(R.layout.wifi_direct_send_list_frag, null);
         return mContentView;
     }
 }

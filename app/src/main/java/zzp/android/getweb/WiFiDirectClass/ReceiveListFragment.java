@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -271,7 +270,7 @@ public class ReceiveListFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContentView = inflater.inflate(R.layout.wifi_direct_receive_list, null);
+        mContentView = inflater.inflate(R.layout.wifi_direct_receive_list_frag, null);
         return mContentView;
     }
 }

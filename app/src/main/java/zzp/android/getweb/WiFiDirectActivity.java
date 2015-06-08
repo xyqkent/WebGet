@@ -68,7 +68,6 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
     private Context mContext;
     public static Handler mHandler;
     UserFunction uf = new UserFunction();
-    LinearLayout[] LL = new LinearLayout[3];
     int screenH, screenW;
 
     /**
@@ -104,15 +103,9 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
 
-        LL[0] = (LinearLayout) findViewById(R.id.LL0);
-        LL[1] = (LinearLayout) findViewById(R.id.LL1);
-        LL[2] = (LinearLayout) findViewById(R.id.LL2);
 
         screenW = this.getWindowManager().getDefaultDisplay().getWidth();
 
-        LL[2].setTranslationX(-screenW);
-        LL[0].setTranslationX(0);
-        LL[1].setTranslationX(screenW);
 
         manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         channel = manager.initialize(this, getMainLooper(), null);
@@ -300,9 +293,7 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
     private GestureDetector gesturedetector = new GestureDetector(new GestureDetector.OnGestureListener() {
         @Override
         public boolean onDown(MotionEvent e) {
-            LL[2].setTranslationX(-screenW);
-            LL[0].setTranslationX(0);
-            LL[1].setTranslationX(screenW);
+
             return false;
         }
 
@@ -318,12 +309,6 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-//            Log.i("onScroll distanceX", String.valueOf(distanceX));
-//            Log.i("onScroll distanceX", String.valueOf(distanceY));
-//            flipper.getCurrentView().setTranslationX(e2.getX());
-            LL[0].setTranslationX(LL[0].getTranslationX() - (int)distanceX);
-            LL[1].setTranslationX(LL[1].getTranslationX() - (int)distanceX);
-            LL[2].setTranslationX(LL[2].getTranslationX() - (int)distanceX);
             return false;
         }
 
@@ -336,107 +321,9 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         //滑动时
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            if (e1.getX() > e2.getX())
-                MoveView(30);
-            else
-                MoveView(-30);
-//            flipper.showNext();
-//            if (Math.abs(e1.getX() - e2.getX()) > uf.dip2px(mContext, DISTANT)) {
-//                //画面向左移动
-//                if (e1.getX() - e2.getX() > 0) {
-//                    flipper.setInAnimation(mContext, R.anim.fragment_slide_left_enter);
-//                    flipper.setOutAnimation(mContext, R.anim.fragment_slide_left_exit);
-//                    flipper.showNext();
-//                }
-//                //画面向右移动
-//                if (e1.getX() - e2.getX() <= 0) {
-//                    flipper.setInAnimation(mContext, R.anim.fragment_slide_right_enter);
-//                    flipper.setOutAnimation(mContext, R.anim.fragment_slide_right_exit);
-//                    flipper.showPrevious();
-//                }
-//                String title = "未知";
-//                switch (flipper.getDisplayedChild()) {
-//                    case 0:
-//                        title = "无线传输";
-//                        break;
-//                    case 1:
-//                        title = "已发送文件";
-//                        break;
-//                    case 2:
-//                        title = "已接收文件";
-//                        break;
-//                }
-//                //Handler,arg1,arg2,obj
-//                Message.obtain(MainTabActivity.mHandler, 1, 2, -1, title).sendToTarget();
-//
-//            }
+
             return false;
         }
     });
-
-    private void MoveView(int speed) {
-        new ScrollTask().execute(speed);
-    }
-
-    class ScrollTask extends AsyncTask<Integer, Integer, Integer> {
-
-        @Override
-        protected Integer doInBackground(Integer... speed) {
-
-            int offectX = (int) LL[0].getTranslationX();
-            Log.i("ScrollTask", String.valueOf(offectX));
-            // 根据传入的速度来滚动界面，当滚动到达左边界或右边界时，跳出循环。
-            while (true) {
-                if (speed[0] > 0) {
-                    offectX += speed[0];
-                    if (offectX > 0) {
-                        offectX -= speed[0];
-                        break;
-                    }
-                }
-                if (speed[0] < 0) {
-                    offectX += speed[0];
-                    if (offectX < 0) {
-                        offectX -= speed[0];
-                        break;
-                    }
-                }
-                publishProgress(speed[0]);
-                // 为了要有滚动效果产生，每次循环使线程睡眠20毫秒，这样肉眼才能够看到滚动动画。
-                sleep(20);
-            }
-            return offectX;
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... offectX) {
-            MoveLL(offectX[0]);
-        }
-
-        @Override
-        protected void onPostExecute(Integer offectX) {
-            MoveLL(offectX);
-            Log.i("onPostExecute",String.valueOf(LL[0].getTranslationX()));
-        }
-
-        private void MoveLL(int offectX) {
-            LL[0].setTranslationX(LL[0].getTranslationX() + offectX);
-            LL[1].setTranslationX(LL[1].getTranslationX() + offectX);
-            LL[2].setTranslationX(LL[2].getTranslationX() + offectX);
-        }
-    }
-
-    /**
-     * 使当前线程睡眠指定的毫秒数。
-     *
-     * @param millis 指定当前线程睡眠多久，以毫秒为单位
-     */
-    private void sleep(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

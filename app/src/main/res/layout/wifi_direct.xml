@@ -1,63 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     android:id="@+id/viewflipper"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/LL0"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1.0"
+        android:background="#000000"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation"/>
 
-        <fragment
-            android:id="@+id/frag_list"
-            class="zzp.android.getweb.WiFiDirectClass.DeviceListFragment"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/phone_list_height"
-            tools:layout="@layout/wifi_direct_device_list">
-            <!-- Preview: layout=@layout/wifi_direct_row_devices -->
-        </fragment>
 
-        <fragment
-            android:id="@+id/frag_detail"
-            class="zzp.android.getweb.WiFiDirectClass.DeviceDetailFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/wifi_direct_device_detail">
-            <!-- Preview: layout=@layout/wifi_direct_device_detail -->
-        </fragment>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LL1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <fragment
-            android:id="@+id/frag_send_list"
-            class="zzp.android.getweb.WiFiDirectClass.SendListFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/wifi_direct_send_list">
-            <!-- Preview: layout=@layout/wifi_direct_device_detail -->
-        </fragment>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LL2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <fragment
-            android:id="@+id/frag_receive_list"
-            class="zzp.android.getweb.WiFiDirectClass.ReceiveListFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/wifi_direct_receive_list">
-            <!-- Preview: layout=@layout/wifi_direct_device_detail -->
-        </fragment>
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>
