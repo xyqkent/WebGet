@@ -27,24 +27,28 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.net.wifi.p2p.WifiP2pManager.ChannelListener;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.GestureDetector;
+
 import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
-import android.widget.LinearLayout;
+
+import android.view.View;
+
 import android.widget.Toast;
-import android.widget.ViewFlipper;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 import zzp.android.getweb.OwnClass.UserFunction;
 import zzp.android.getweb.WiFiDirectClass.DeviceDetailFragment;
 import zzp.android.getweb.WiFiDirectClass.DeviceListFragment;
+import zzp.android.getweb.WiFiDirectClass.ReceiveListFragment;
 import zzp.android.getweb.WiFiDirectClass.SendListFragment;
 import zzp.android.getweb.WiFiDirectClass.WiFiDirectBroadcastReceiver;
 
@@ -68,20 +72,10 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
     private Context mContext;
     public static Handler mHandler;
     UserFunction uf = new UserFunction();
-    int screenH, screenW;
 
-    /**
-     * 定义手势检测实例
-     */
-    public static GestureDetector detector;
-    /**
-     * 做标签，记录当前是哪个fragment
-     */
-    public int MARK = 0;
-    /**
-     * 定义手势两点之间的最小距离
-     */
-    final int DISTANT = 100;//dip单位
+    private ViewPager viewPager;
+    private List<View> lists = new ArrayList<View>();
+    private ViewPagerAdapter adapter;
 
     /**
      * @param isWifiP2pEnabled the isWifiP2pEnabled to set
@@ -95,7 +89,6 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wifi_direct);
         mContext = this;
-        detector = gesturedetector;
 
         // add necessary intent values to be matched.
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
@@ -103,8 +96,29 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
 
+        lists.add(getLayoutInflater().inflate(R.layout.wifi_direct_tab_device, null));
+        lists.add(getLayoutInflater().inflate(R.layout.wifi_direct_tab_send, null));
+        lists.add(getLayoutInflater().inflate(R.layout.wifi_direct_tab_receive, null));
 
-        screenW = this.getWindowManager().getDefaultDisplay().getWidth();
+        adapter = new ViewPagerAdapter(lists);
+        viewPager = (ViewPager) findViewById(R.id.vPager);
+        viewPager.setAdapter(adapter);
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
 
 
         manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
@@ -215,7 +229,6 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
 
             @Override
             public void onSuccess() {
-//                fragment.getView().setVisibility(View.GONE);
                 Message.obtain(DeviceDetailFragment.mHandler, 2, 1).sendToTarget();
             }
 
@@ -283,47 +296,39 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        // TODO Auto-generated method stub
-        //将该Activity上触碰事件交给GestureDetector处理
-        return detector.onTouchEvent(event);
+    public class ViewPagerAdapter extends PagerAdapter {
+
+        List<View> viewLists;
+
+        public ViewPagerAdapter(List<View> lists) {
+            viewLists = lists;
+        }
+
+        @Override
+        public int getCount() {                                                                 //获得size
+            // TODO Auto-generated method stub
+            return viewLists.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            // TODO Auto-generated method stub
+            return arg0 == arg1;
+        }
+
+        @Override
+        public void destroyItem(View view, int position, Object object)                       //销毁Item
+        {
+            ((ViewPager) view).removeView(viewLists.get(position));
+        }
+
+        @Override
+        public Object instantiateItem(View view, int position)                                //实例化Item
+        {
+            ((ViewPager) view).addView(viewLists.get(position), 0);
+
+            return viewLists.get(position);
+        }
+
     }
-
-    private GestureDetector gesturedetector = new GestureDetector(new GestureDetector.OnGestureListener() {
-        @Override
-        public boolean onDown(MotionEvent e) {
-
-            return false;
-        }
-
-        @Override
-        public void onShowPress(MotionEvent e) {
-
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            return false;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-
-
-        }
-
-        //滑动时
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-
-            return false;
-        }
-    });
-
 }

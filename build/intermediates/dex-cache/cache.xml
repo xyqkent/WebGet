@@ -2,25 +2,25 @@
 <items version="2" >
 
     <item
-        jar="E:\StudioProjects\WebGet\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\libs\internal_impl-22.1.1.jar"
+        jar="E:\StudioProjects\WebGet\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="E:\StudioProjects\WebGet\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-f91c753db3e2cde1c0deddc93118c7fcc88bea20.jar" />
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="E:\StudioProjects\WebGet\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-dd49bff6296b53ec6de0b846b03cf273a1ed39af.jar" />
     </item>
     <item
-        jar="E:\StudioProjects\WebGet\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\classes.jar"
+        jar="D:\software\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="E:\StudioProjects\WebGet\app\build\intermediates\pre-dexed\debug\classes-26b87eeb044bd782a99124ed30bb545236b7fe11.jar" />
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="E:\StudioProjects\WebGet\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-9cf58b80e43ebe02e673a60a499e25b5faf52f99.jar" />
     </item>
     <item
-        jar="D:\software\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jar="E:\StudioProjects\WebGet\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="E:\StudioProjects\WebGet\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-7bb59237618e619191a3abc6088fe6f08edf0fa5.jar" />
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="E:\StudioProjects\WebGet\app\build\intermediates\pre-dexed\debug\classes-7555fa1fd56d00c35bc56302feaaca0dfaeaeb81.jar" />
     </item>
 
 </items>
