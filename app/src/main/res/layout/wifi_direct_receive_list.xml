@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/btn1"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:background="@color/sv_top"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/putin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_topbtn_pressed"
+            android:gravity="center_horizontal|center">
+
+            <TextView
+                android:id="@+id/putin_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="@string/receive_list_btn_putin_all"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/oc_mselect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_topbtn_pressed"
+            android:gravity="center_horizontal|center">
+
+            <TextView
+                android:id="@+id/oc_mselect_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="@string/receive_list_btn_o_mselect"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dip"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@id/android:list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#ffd9d9d9"
+            android:dividerHeight="1px">
+        </ListView>
+
+        <TextView
+            android:id="@id/android:empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/receive_list_empty"
+            android:textColor="#a1666666"
+            android:textSize="18sp"/>
+    </LinearLayout>
+</LinearLayout>

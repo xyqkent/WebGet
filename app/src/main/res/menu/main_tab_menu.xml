@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:showAsAction="always"
+        android:visible="false"
+        android:title="@string/menu_search" />
+    <item
+        android:id="@+id/menu_group_option"
+        android:showAsAction="never"
+        android:visible="false"
+        android:title="@string/menu_group_option"/>
+
+    <item
+        android:id="@+id/menu_p2p_search"
+        android:showAsAction="always"
+        android:visible="true"
+        android:title="@string/menu_p2p_search"/>
+    <item
+        android:id="@+id/menu_app_exit"
+        android:showAsAction="never"
+        android:title="@string/menu_group_exit"/>
+    <item
+        android:id="@+id/menu_add_refresh"
+        android:showAsAction="always"
+        android:visible="false"
+        android:title="@string/refresh"
+        android:icon="@drawable/icon_menu_refresh_enabled"/>
+    <item
+        android:id="@+id/menu_add_save"
+        android:showAsAction="always"
+        android:visible="false"
+        android:title="@string/save"
+        android:icon="@drawable/icon_menu_save_enabled"/>
+</menu>

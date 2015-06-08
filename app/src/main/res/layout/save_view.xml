@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/saveviewRL"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/btn1"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:background="@color/sv_top"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_topbtn_pressed"
+            android:gravity="center_horizontal|center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_group"
+                android:clickable="false"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sort"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_topbtn_pressed"
+            android:gravity="center_horizontal|center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_sort"
+                android:clickable="false"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mselect"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_topbtn_pressed"
+            android:gravity="center_horizontal|center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_mselect"
+                android:clickable="false"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn2"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:background="@color/sv_top"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/ms_all"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_topbtn_pressed"
+            android:gravity="center_horizontal|center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_mselect_all"
+                android:clickable="false"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ms_inv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_topbtn_pressed"
+            android:gravity="center_horizontal|center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_mselect_inv"
+                android:clickable="false"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ms_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_topbtn_pressed"
+            android:gravity="center_horizontal|center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_mselect_cancel"
+                android:clickable="false"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btnAction"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/radiogroup_border"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/sendfiles"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_bottombtn_pressed"
+            android:visibility="gone">
+
+            <LinearLayout
+                style="@style/bottom_button"
+                android:background="@drawable/icon_wv_send"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/icon_wv_send"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_bottombtn_pressed">
+
+            <LinearLayout
+                style="@style/bottom_button"
+                android:background="@drawable/icon_wv_share"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/icon_wv_share"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/setgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_bottombtn_pressed">
+
+            <LinearLayout
+                style="@style/bottom_button"
+                android:background="@drawable/icon_wv_group"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/icon_wv_group"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_bottombtn_pressed">
+
+            <LinearLayout
+                style="@style/bottom_button"
+                android:background="@drawable/icon_wv_delete"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/icon_wv_delete"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dip"
+        android:layout_marginTop="40dip"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@id/android:list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#ffd9d9d9"
+            android:dividerHeight="1px"
+            android:paddingLeft="1dip"
+            android:paddingRight="1dip"/>
+
+        <TextView
+            android:id="@id/android:empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top|center_horizontal"
+            android:paddingTop="60dip"
+            android:text="@string/saveview_list_empty"
+            android:textColor="#a1666666"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+</RelativeLayout>

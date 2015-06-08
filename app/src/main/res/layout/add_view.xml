@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/TxLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dip"
+
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <AutoCompleteTextView
+                android:id="@+id/url"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:completionHint="@string/url"
+                android:completionThreshold="1"
+                android:hint="@string/url"
+                android:inputType="textUri"
+                android:layout_toLeftOf="@+id/load"
+                android:layout_toStartOf="@+id/load" />
+
+            <ProgressBar
+                android:id="@+id/load"
+                android:layout_width="35dip"
+                android:layout_height="35dip"
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:indeterminate="false" />
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/prBar"
+            android:layout_width="match_parent"
+            android:layout_height="5dip">
+            <ProgressBar
+                android:id="@+id/pb"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dip"
+                android:indeterminateOnly="false"
+                android:max="100" />
+        </LinearLayout>
+        <WebView
+            android:id="@+id/show"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/jumpMain"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/radiogroup_border"
+        android:text="@string/broSave" />
+</RelativeLayout>

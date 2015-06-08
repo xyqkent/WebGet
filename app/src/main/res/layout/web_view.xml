@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".WebViewActivity">
+
+    <WebView
+        android:id="@+id/show2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dip"/>
+
+
+    <LinearLayout
+        android:id="@+id/btnLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/radiogroup_border"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/sendfiles"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_bottombtn_pressed"
+            android:visibility="gone">
+
+            <LinearLayout
+                style="@style/bottom_button"
+                android:background="@drawable/icon_wv_send"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/icon_wv_send"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_bottombtn_pressed">
+
+            <LinearLayout
+                style="@style/bottom_button"
+                android:background="@drawable/icon_wv_share"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/icon_wv_share"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rename"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_bottombtn_pressed">
+
+            <LinearLayout
+                style="@style/bottom_button"
+                android:background="@drawable/icon_wv_rename"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/icon_wv_rename"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/setgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/icon_bottombtn_pressed">
+
+            <LinearLayout
+                style="@style/bottom_button"
+                android:background="@drawable/icon_wv_group"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/icon_wv_group"/>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
