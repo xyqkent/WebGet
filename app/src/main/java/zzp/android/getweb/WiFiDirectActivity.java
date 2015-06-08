@@ -112,6 +112,11 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
             @Override
             public void onPageSelected(int i) {
 
+
+
+
+
+                
             }
 
             @Override
