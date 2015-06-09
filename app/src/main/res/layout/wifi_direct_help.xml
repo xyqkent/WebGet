@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-    android:padding="3dip">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vPager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation"/>
+
+    <LinearLayout
+        android:id="@+id/underPagerBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="@string/wifi_direct_help"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dip"
+        android:gravity="center"
+        android:orientation="horizontal">
+    </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/underPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dip"
+        android:gravity="center"
+        android:orientation="horizontal">
+    </LinearLayout>
+</RelativeLayout>

@@ -155,8 +155,6 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 tr1.start();
             }
         } else if (info.groupFormed) {
-
-            ((TextView) mContentView.findViewById(R.id.status_text)).setText(getResources().getString(R.string.client_text));
             if (tr2 == null) {
                 tr2 = new Thread(new Runnable() {
                     @Override

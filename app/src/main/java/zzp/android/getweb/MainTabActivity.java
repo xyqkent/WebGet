@@ -222,6 +222,7 @@ public class MainTabActivity extends TabActivity {
             case 0:
                 mi_search.setVisible(true);
                 mi_group_option.setVisible(true);
+                menu_p2p_help.setVisible(true);
                 break;
             case 1:
                 menu_add_save.setVisible(true);

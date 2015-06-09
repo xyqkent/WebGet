@@ -39,17 +39,20 @@
                 android:id="@+id/tab_btn_view"
                 style="@style/main_tab_bottom"
                 android:checked="false"
+                android:background="@drawable/icon_tab_bg_select"
                 android:drawableBottom="@drawable/icon_tab_view_select" />
 
             <RadioButton
                 android:id="@+id/tab_btn_add"
                 style="@style/main_tab_bottom"
                 android:checked="false"
+                android:background="@drawable/icon_tab_bg_select"
                 android:drawableBottom="@drawable/icon_tab_add_select"/>
             <RadioButton
                 android:id="@+id/tab_btn_transfer"
                 style="@style/main_tab_bottom"
                 android:checked="false"
+                android:background="@drawable/icon_tab_bg_select"
                 android:drawableBottom="@drawable/icon_tab_transfer_select"/>
         </RadioGroup>
     </RelativeLayout>
