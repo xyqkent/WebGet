@@ -109,6 +109,12 @@
         </activity>
 
         <activity
+            android:name=".WifiDirectHelpActivity"
+            android:label="@string/WifiDirectHelpActivity"
+            android:parentActivityName="zzp.android.getweb.WiFiDirectActivity">
+        </activity>
+
+        <activity
             android:name=".MenuGroupOptionActivity"
             android:label="@string/MenuGroupOptionActivity"
             android:parentActivityName="zzp.android.getweb.SaveViewActivity">

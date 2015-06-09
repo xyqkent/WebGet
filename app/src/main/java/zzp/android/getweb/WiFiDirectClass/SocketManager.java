@@ -94,7 +94,7 @@ public class SocketManager {
 
             String str;
             str = in.readLine();//接受连接端ip地址
-            out.println("由创建端发送来的");
+            out.println("已成功连接");
             out.flush();
 
             in.close();

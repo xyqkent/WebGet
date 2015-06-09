@@ -36,12 +36,16 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
+import zzp.android.getweb.OwnClass.UserFunction;
 import zzp.android.getweb.WiFiDirectClass.DeviceDetailFragment;
 import zzp.android.getweb.WiFiDirectClass.DeviceListFragment;
 import zzp.android.getweb.WiFiDirectClass.SendListFragment;
@@ -68,6 +72,9 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
 
     private ViewPager viewPager;
     private List<View> lists = new ArrayList<View>();
+    LinearLayout underPager, underPagerBackground;
+    int lastValue = -1;
+    int nowPage = 0;
 
     /**
      * @param isWifiP2pEnabled the isWifiP2pEnabled to set
@@ -92,16 +99,40 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         lists.add(getLayoutInflater().inflate(R.layout.wifi_direct_tab_send, null));
         lists.add(getLayoutInflater().inflate(R.layout.wifi_direct_tab_receive, null));
 
+        //滑动指示点
+        underPager = (LinearLayout) findViewById(R.id.underPager);
+        underPagerBackground = (LinearLayout) findViewById(R.id.underPagerBackground);
+        //设置默认指示点
+        initUnderPager();
+        serUnderPager(0);
+        //利用viewpager做滑动界面
         viewPager = (ViewPager) findViewById(R.id.vPager);
         viewPager.setAdapter(new ViewPagerAdapter(lists));
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int i, float v, int i1) {
-
+            public void onPageScrolled(int i, float v, int distant) {
+                if (distant != 0) {
+                    if (i == nowPage) {
+                        //向左滑动，切换下一页
+                        Button setBTN_Now = (Button) underPager.getChildAt(i);
+                        setBTN_Now.setAlpha(255 * (1 - v));
+                        Button setBTN_Right = (Button) underPager.getChildAt(i+1);
+                        setBTN_Right.setAlpha(255 * v);
+                    } else {
+                        //向右滑动，切换上一页
+                        Button setBTN_Now = (Button) underPager.getChildAt(nowPage);
+                        setBTN_Now.setAlpha(255 * (1 - v));
+                        Button setBTN_Left = (Button) underPager.getChildAt(i);
+                        setBTN_Left.setAlpha(255 * v);
+                    }
+                }
+                Log.i("onPageScrolled",  String.valueOf(i)+",,"+String.valueOf(v) + ",," +String.valueOf(distant));
             }
 
             @Override
             public void onPageSelected(int i) {
+                nowPage = i;
+                serUnderPager(i);
                 String title = "未知";
                 switch (i) {
                     case 0:
@@ -156,6 +187,32 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
                 }
             }
         };
+    }
+
+    private void initUnderPager() {
+        //加入点击功能
+        for (int i = 0; i < lists.size(); i++) {
+            Button bt = new Button(this);
+            bt.setLayoutParams(new ViewGroup.LayoutParams(dip2px(this, 20), ViewGroup.LayoutParams.MATCH_PARENT));
+            bt.setBackgroundResource(R.drawable.wifi_direct_dot_nomal);
+            underPagerBackground.addView(bt);
+        }
+        for (int i = 0; i < lists.size(); i++) {
+            Button bt = new Button(this);
+            bt.setLayoutParams(new ViewGroup.LayoutParams(dip2px(this, 20), ViewGroup.LayoutParams.MATCH_PARENT));
+            bt.setBackgroundResource(R.drawable.wifi_direct_dot_selected);
+            bt.setAlpha(0);
+            underPager.addView(bt);
+        }
+    }
+
+    private void serUnderPager(int position) {
+        for (int i = 0; i < lists.size(); i++) {
+            Button currentBt = (Button) underPager.getChildAt(i);
+            currentBt.setAlpha(0);
+        }
+        Button setBTN = (Button) underPager.getChildAt(position);
+        setBTN.setAlpha(255);
     }
 
     /**
@@ -334,5 +391,10 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
             return viewLists.get(position);
         }
 
+    }
+
+    public int dip2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 }

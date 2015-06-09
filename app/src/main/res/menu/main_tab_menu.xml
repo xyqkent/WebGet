@@ -15,8 +15,13 @@
     <item
         android:id="@+id/menu_p2p_search"
         android:showAsAction="always"
-        android:visible="true"
+        android:visible="false"
         android:title="@string/menu_p2p_search"/>
+    <item
+        android:id="@+id/menu_p2p_help"
+        android:showAsAction="always"
+        android:visible="false"
+        android:title="@string/menu_p2p_help"/>
     <item
         android:id="@+id/menu_app_exit"
         android:showAsAction="never"

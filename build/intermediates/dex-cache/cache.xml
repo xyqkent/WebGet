@@ -2,25 +2,25 @@
 <items version="2" >
 
     <item
-        jar="E:\StudioProjects\WebGet\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="E:\StudioProjects\WebGet\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-dd49bff6296b53ec6de0b846b03cf273a1ed39af.jar" />
-    </item>
-    <item
-        jar="D:\software\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jar="D:\Program Files\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="E:\StudioProjects\WebGet\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-9cf58b80e43ebe02e673a60a499e25b5faf52f99.jar" />
+        <dex dex="D:\AS\WebGet\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-ed148b79a2e32691150cd675671d029625c3d8f8.jar" />
     </item>
     <item
-        jar="E:\StudioProjects\WebGet\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jar="D:\AS\WebGet\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="D:\AS\WebGet\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-cd5dd406e7908d1948fd6e2dde2afd405c61138d.jar" />
+    </item>
+    <item
+        jar="D:\AS\WebGet\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="E:\StudioProjects\WebGet\app\build\intermediates\pre-dexed\debug\classes-7555fa1fd56d00c35bc56302feaaca0dfaeaeb81.jar" />
+        <dex dex="D:\AS\WebGet\app\build\intermediates\pre-dexed\debug\classes-5599d3b6b72650649d286b9fd2fba05dd1478515.jar" />
     </item>
 
 </items>

@@ -212,6 +212,7 @@ public class MainTabActivity extends TabActivity {
         MenuItem menu_add_save = menu.findItem(R.id.menu_add_save);
         MenuItem menu_add_refresh = menu.findItem(R.id.menu_add_refresh);
         MenuItem menu_p2p_search = menu.findItem(R.id.menu_p2p_search);
+        MenuItem menu_p2p_help = menu.findItem(R.id.menu_p2p_help);
         s_view = (SearchView) menu.findItem(R.id.menu_search).getActionView();
         for (int i = 0; i < menu.size(); i++) {
             if (menu.getItem(i).getItemId() != R.id.menu_app_exit)
@@ -228,6 +229,7 @@ public class MainTabActivity extends TabActivity {
                 break;
             case 2:
                 menu_p2p_search.setVisible(true);
+                menu_p2p_help.setVisible(true);
                 break;
         }
         if (MenuBtnFlag) {
@@ -287,9 +289,13 @@ public class MainTabActivity extends TabActivity {
                 finish();
                 System.exit(0);
                 break;
-//            //TODO WIFI传输入口
             case R.id.menu_p2p_search:
                 Message.obtain(WiFiDirectActivity.mHandler, 1).sendToTarget();
+                break;
+            case R.id.menu_p2p_help:
+                Intent intent2 = new Intent();
+                intent2.setClass(MainTabActivity.this, WifiDirectHelpActivity.class);
+                startActivity(intent2);
                 break;
 
         }
