@@ -3,26 +3,23 @@ package zzp.android.getweb;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.view.View;
+
+import android.widget.RelativeLayout;
+
 
 /**
  * Created by Xiang on 2015/6/9.
  */
 public class WifiDirectHelpActivity extends Activity implements ViewPager.OnPageChangeListener {
     private ViewPager viewPager;
-    private List<View> lists = new ArrayList<View>();
-    private View[] mViews;
-    private int[] imgIdArray;
+    int mViews[];
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,28 +29,8 @@ public class WifiDirectHelpActivity extends Activity implements ViewPager.OnPage
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.vPager);
-        imgIdArray = new int[]{R.drawable.help1, R.drawable.help2, R.drawable.help3, R.drawable.help4, R.drawable.help5
-                , R.drawable.help6, R.drawable.help7, R.drawable.help8, R.drawable.help9, R.drawable.help10, R.drawable.help11
-                , R.drawable.help12, R.drawable.help13, R.drawable.help14, R.drawable.help15};
-        //将图片装载到数组中
-        mViews = new ImageView[imgIdArray.length];
-//        for (int i = 0; i < 3; i++) {
-//            ImageView imageView = new ImageView(WifiDirectHelpActivity.this);
-//            imageView.setAdjustViewBounds(true);
-//            imageView.setImageResource(imgIdArray[i]);
-//            mViews[i] = imageView;
-//        }
-//        for (int i = 0; i < imgIdArray.length; i++) {
-//            ImageView imageView = new ImageView(this);
-//            imageView.setAdjustViewBounds(true);
-//            mViews[i] = imageView;
-//            imageView.setImageResource(imgIdArray[i]);
-////            ImageView imageView = new ImageView(this);
-////            imageView.setAdjustViewBounds(true);
-////            Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), imgIdArray[i]);
-////            imageView.setImageBitmap(bitmap);
-////            mViews[i] = imageView;
-//        }
+
+        mViews = new int[]{R.id.LL1, R.id.LL2, R.id.LL3, R.id.LL4, R.id.LL5};
         //设置Adapter
         viewPager.setAdapter(new MyAdapter());
         //设置监听，主要是设置点点的背景
@@ -66,7 +43,7 @@ public class WifiDirectHelpActivity extends Activity implements ViewPager.OnPage
 
         @Override
         public int getCount() {
-            return Integer.MAX_VALUE;
+            return mViews.length;
         }
 
         @Override
@@ -76,7 +53,6 @@ public class WifiDirectHelpActivity extends Activity implements ViewPager.OnPage
 
         @Override
         public void destroyItem(View container, int position, Object object) {
-            mViews[position] = null;
             ((ViewPager) container).removeView((View) object);
         }
 
@@ -85,17 +61,11 @@ public class WifiDirectHelpActivity extends Activity implements ViewPager.OnPage
          */
         @Override
         public Object instantiateItem(View container, int position) {
-            for (int i = -1; i < 2; i++) {
-                if (position + i >= 0) {
-                    ImageView imageView = new ImageView(WifiDirectHelpActivity.this);
-                    imageView.setAdjustViewBounds(true);
-                    imageView.setImageResource(imgIdArray[position + i]);
-                    mViews[position + i] = imageView;
-                }
-            }
-            Log.i("instantiateItem", String.valueOf(position));
-            ((ViewPager) container).addView(mViews[position], 0);
-            return mViews[position];
+            View view = View.inflate(WifiDirectHelpActivity.this, R.layout.wifi_direct_help_content, null);
+//            RelativeLayout ll = (RelativeLayout) view.findViewById(mViews[position]);
+            View v = view.findViewById(mViews[position]);
+            ((ViewPager) container).addView(v, 0);
+            return v;
         }
 
 
