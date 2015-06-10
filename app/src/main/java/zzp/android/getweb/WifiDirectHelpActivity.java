@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -36,23 +37,29 @@ public class WifiDirectHelpActivity extends Activity implements ViewPager.OnPage
                 , R.drawable.help12, R.drawable.help13, R.drawable.help14, R.drawable.help15};
         //将图片装载到数组中
         mViews = new ImageView[imgIdArray.length];
-        for (int i = 0; i < imgIdArray.length; i++) {
-            ImageView imageView = new ImageView(this);
-            imageView.setAdjustViewBounds(true);
-            mViews[i] = imageView;
-            imageView.setImageResource(imgIdArray[i]);
+//        for (int i = 0; i < 3; i++) {
+//            ImageView imageView = new ImageView(WifiDirectHelpActivity.this);
+//            imageView.setAdjustViewBounds(true);
+//            imageView.setImageResource(imgIdArray[i]);
+//            mViews[i] = imageView;
+//        }
+//        for (int i = 0; i < imgIdArray.length; i++) {
 //            ImageView imageView = new ImageView(this);
 //            imageView.setAdjustViewBounds(true);
-//            Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), imgIdArray[i]);
-//            imageView.setImageBitmap(bitmap);
 //            mViews[i] = imageView;
-        }
+//            imageView.setImageResource(imgIdArray[i]);
+////            ImageView imageView = new ImageView(this);
+////            imageView.setAdjustViewBounds(true);
+////            Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), imgIdArray[i]);
+////            imageView.setImageBitmap(bitmap);
+////            mViews[i] = imageView;
+//        }
         //设置Adapter
         viewPager.setAdapter(new MyAdapter());
         //设置监听，主要是设置点点的背景
         viewPager.setOnPageChangeListener(this);
         //设置ViewPager的默认项, 设置为长度的100倍，这样子开始就能往左滑动
-        viewPager.setCurrentItem((mViews.length) * 100);
+        viewPager.setCurrentItem(0);
     }
 
     public class MyAdapter extends PagerAdapter {
@@ -69,8 +76,8 @@ public class WifiDirectHelpActivity extends Activity implements ViewPager.OnPage
 
         @Override
         public void destroyItem(View container, int position, Object object) {
-            ((ViewPager) container).removeView(mViews[position % mViews.length]);
-
+            mViews[position] = null;
+            ((ViewPager) container).removeView((View) object);
         }
 
         /**
@@ -78,9 +85,17 @@ public class WifiDirectHelpActivity extends Activity implements ViewPager.OnPage
          */
         @Override
         public Object instantiateItem(View container, int position) {
-
-            ((ViewPager) container).addView(mViews[position % mViews.length], 0);
-            return mViews[position % mViews.length];
+            for (int i = -1; i < 2; i++) {
+                if (position + i >= 0) {
+                    ImageView imageView = new ImageView(WifiDirectHelpActivity.this);
+                    imageView.setAdjustViewBounds(true);
+                    imageView.setImageResource(imgIdArray[position + i]);
+                    mViews[position + i] = imageView;
+                }
+            }
+            Log.i("instantiateItem", String.valueOf(position));
+            ((ViewPager) container).addView(mViews[position], 0);
+            return mViews[position];
         }
 
 

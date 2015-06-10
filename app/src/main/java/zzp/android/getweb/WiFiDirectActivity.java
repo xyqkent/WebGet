@@ -192,6 +192,8 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
                 }
             }
         };
+        disconnect();//强制重开软件时关闭连接
+        //TODO 尝试连接中时，进入状态
     }
 
     private void initUnderPager() {
