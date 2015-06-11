@@ -83,7 +83,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case 1:
-                        //TODO 发送文件
+                        //传入文件信息并发送至接收端
                         final List<ListData> lds = (ArrayList<ListData>) msg.obj;
 
                         if (info.groupFormed && !info.isGroupOwner) {

@@ -136,7 +136,6 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
 
             @Override
             public void onPageSelected(int i) {
-                Log.i("onPageSelected", String.valueOf(i));
                 String title = "未知";
                 switch (i) {
                     case 0:
@@ -156,7 +155,6 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
             @Override
             public void onPageScrollStateChanged(int i) {
                 scrollStatus = i;
-//                Log.i("ScrollStateChanged", String.valueOf(i));
             }
         });
 
@@ -192,7 +190,7 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
                 }
             }
         };
-        disconnect();//强制重开软件时关闭连接
+//        disconnect();//强制重开软件时关闭连接
         //TODO 尝试连接中时，进入状态
     }
 
@@ -228,7 +226,6 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
     private View.OnClickListener ringClick=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.i("ringClick",v.getTag().toString());
             int position =(int)v.getTag();
             viewPager.setCurrentItem(position);
         }

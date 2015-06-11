@@ -132,7 +132,7 @@ public class MainTabActivity extends TabActivity {
         //添加n个tab选项卡，定义他们的tab名，指示名，目标屏对应的类
         mTabHost.addTab(mTabHost.newTabSpec("TAG1").setIndicator("0").setContent(new Intent(this, SaveViewActivity.class)));
         mTabHost.addTab(mTabHost.newTabSpec("TAG2").setIndicator("1").setContent(new Intent(this, AddActivity.class)));
-        mTabHost.addTab(mTabHost.newTabSpec("TAG3").setIndicator("3").setContent(new Intent(this, WiFiDirectActivity.class)));
+        mTabHost.addTab(mTabHost.newTabSpec("TAG3").setIndicator("2").setContent(new Intent(this, WiFiDirectActivity.class)));
         mTabHost.setOpenAnimation(true);
         //获取数据
         Intent intent = getIntent();
@@ -222,7 +222,6 @@ public class MainTabActivity extends TabActivity {
             case 0:
                 mi_search.setVisible(true);
                 mi_group_option.setVisible(true);
-                menu_p2p_help.setVisible(true);
                 break;
             case 1:
                 menu_add_save.setVisible(true);

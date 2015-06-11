@@ -86,7 +86,7 @@ public class UserFunction {
             share2 = share2 + "（无分享链接）";
         }
         share1 = "分享文档（" + FormetFileSize(size) + "）";
-        final String shareItem[] = new String[]{share1, share2,"发送文件（测试）"};
+        final String shareItem[] = new String[]{share1, share2};
         new AlertDialog.Builder(mContext)
                 .setTitle("分享")
                 .setItems(shareItem, new DialogInterface.OnClickListener() {
@@ -124,9 +124,6 @@ public class UserFunction {
                                     itSend.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     mContext.startActivity(Intent.createChooser(itSend, "分享链接"));
                                 }
-                                break;
-                            case 2:
-
                                 break;
                         }
                     }

@@ -59,6 +59,7 @@
     <string name="wifi_direct_help1_2">这是WLAN直连</string>
     <string name="wifi_direct_help2_1">点击搜索设备</string>
     <string name="wifi_direct_help3_1">点击连接端中搜索到的设备</string>
+    <string name="wifi_direct_help3_2">双方有一方点击连接即可</string>
     <string name="wifi_direct_help3_5">此状态即为连接成功</string>
     <string name="wifi_direct_help4_1">多选、长按、进入页面后均能见到发送按钮</string>
     <string name="wifi_direct_help6_1">导入后文件状态</string>

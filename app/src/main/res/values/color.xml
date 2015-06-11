@@ -6,9 +6,9 @@
     <color name="sv_top">#ff3ab7ff</color>
     <color name="sv_top_press">#ff399edd</color>
     <color name="test2">#0012ff</color>
-    <color name="sv_group_press">#ffa0fffd</color>
+    <color name="sv_group_press">#ff399edd</color>
     <color name="wv_bottom">#fff</color>
     <color name="bottom_btn_press">#ffe1e1e1</color>
-<color name="status_bar_color">#FF000000</color>
+    <color name="status_bar_color">#FF000000</color>
     <color name="layout_border_color">#FF111111</color>
 </resources>

@@ -13,10 +13,15 @@
         android:background="#fff"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/console"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/console"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
+
 
         <TextView
             android:id="@+id/status_text"

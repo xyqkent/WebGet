@@ -262,7 +262,7 @@ public class SaveViewActivity<SpinnerActivity> extends ListActivity {
             ListData tdp = new ListData(tmpDate, Name, FilePath, Link, id, false);
             mList.add(tdp);
         }
-        //TODO 数据测试用
+        //数据测试用
 //        String abc[] = new String[]{"a", "b", "d", "e", "f", "g", "h", "j", "k", "l", "i", "q", "w", "r", "t", "y", "u", "o", "p"};
 //        int j = 1;
 //        for (int i = 0; i < 2000; i++) {
@@ -388,9 +388,7 @@ public class SaveViewActivity<SpinnerActivity> extends ListActivity {
                                     uf.setContextNListDate(mContext, mAList);
                                     switch (which + select_offset) {
                                         case 0:
-                                            //TODO
                                             uf.sendSelects();
-                                            Log.i("LongClick", "yes");
                                             break;
                                         case 1:
                                             uf.shareFile();
@@ -498,58 +496,6 @@ public class SaveViewActivity<SpinnerActivity> extends ListActivity {
     private AdapterView.OnItemClickListener LV_ItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            final int pis = position;
-            Thread thrd = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    final Context context = mContext;
-                    int position = pis;
-                    String path = mList.get(position).getPath();
-                    final String id = mList.get(position).getID();
-                    File file = new File(path);
-                    // 文件存在并可读
-                    if (file.exists() && file.canRead()) {
-                        String viewPath = currPath + File.separator + "view";
-                        File viewDir = new File(viewPath);
-                        uf.delete(viewDir);
-                        try {
-                            ZipUtils.unzip(file.getAbsolutePath(), viewPath);
-                        } catch (Exception e) {
-                            new AlertDialog.Builder(context).setTitle("错误")
-                                    .setMessage("尝试打开文件失败\n" + e.toString())
-                                    .setPositiveButton("确定", null).show();
-                            return;
-                        }
-                        File index = new File(currPath + File.separator + "view/index.html");
-                        Intent intent = new Intent();
-                        intent.setClass(context, WebViewActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("ListData", mList.get(position));
-                        intent.putExtras(bundle);
-                        intent.putExtra("SFFlag", SFFlag);
-                        intent.setDataAndType(Uri.fromFile(index), "html");
-                        startActivity(intent);
-                        toast.cancel();
-                    }
-                    // 没有权限
-                    else {
-                        new AlertDialog.Builder(context).
-                                setTitle("注意").
-                                setMessage("没有要打开的文件，请问是否删除数据库记录？").
-                                setPositiveButton("删除", new OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        SQLiteDatabase db = GetDB();
-                                        db.execSQL("delete from list where id=" + id);
-                                        db.close();
-                                        refreshLV();
-                                        showTextToast("成功删除数据库记录");
-                                    }
-                                })
-                                .setNegativeButton("取消", null)
-                                .show();
-                    }
-                }
-            });
             if (cbShow) {
                 LVAdapter.ViewHolder holder = (LVAdapter.ViewHolder) view.getTag();
                 // 改变CheckBox的状态
@@ -557,10 +503,59 @@ public class SaveViewActivity<SpinnerActivity> extends ListActivity {
                 // 将CheckBox的选中状况记录下来
                 mAdapter.map.put(position, holder.cb.isChecked());
             } else {
-                showTextToast("正在解压缩文件，请稍后");
-                thrd.start();
+                final int pis = position;
+                final Context context = mContext;
+                String path = mList.get(pis).getPath();
+                final String file_id = mList.get(position).getID();
+                final File file = new File(path);
+                Log.i("thrd", String.valueOf(file.exists()));
+                // 文件存在并可读
+                if (file.exists() && file.canRead()) {
+                    Thread thrd = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String viewPath = currPath + File.separator + "view";
+                            File viewDir = new File(viewPath);
+                            uf.delete(viewDir);
+                            try {
+                                ZipUtils.unzip(file.getAbsolutePath(), viewPath);
+                            } catch (Exception e) {
+                                showTextToast("尝试打开文件失败\n" + e.toString());
+                                return;
+                            }
+                            File index = new File(currPath + File.separator + "view/index.html");
+                            Intent intent = new Intent();
+                            intent.setClass(context, WebViewActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("ListData", mList.get(pis));
+                            intent.putExtras(bundle);
+                            intent.putExtra("SFFlag", SFFlag);
+                            intent.setDataAndType(Uri.fromFile(index), "html");
+                            startActivity(intent);
+                            toast.cancel();
+                        }
+                    });
+                    showTextToast("正在解压缩文件，请稍后");
+                    thrd.start();
+                }
+                // 没有权限
+                else {
+                    new AlertDialog.Builder(context).
+                            setTitle("注意").
+                            setMessage("没有要打开的文件，请问是否删除数据库记录？").
+                            setPositiveButton("删除", new OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    SQLiteDatabase db = GetDB();
+                                    db.execSQL("delete from list where id=" + file_id);
+                                    db.close();
+                                    refreshLV();
+                                    showTextToast("成功删除数据库记录");
+                                }
+                            })
+                            .setNegativeButton("取消", null)
+                            .show();
+                }
             }
-
         }
     };
 

@@ -117,7 +117,7 @@ public class ReceiveListFragment extends ListFragment {
                 switch (msg.what) {
                     case 1:
                         //更新数据
-                        UserFunction uf=new UserFunction();
+                        UserFunction uf = new UserFunction();
                         Toast.makeText(getActivity(), "接收文件中\n请查看接收列表", Toast.LENGTH_LONG).show();
                         ListData tmpLD = (ListData) msg.obj;
                         //检查是否存在重复文件，若重复则不加入接收列表
@@ -159,7 +159,7 @@ public class ReceiveListFragment extends ListFragment {
                         break;//可以break标签
                     }
                 }
-                if (checked) autoName = "(AutoName)" + each.getName();
+                if (checked) autoName = "(副本)" + each.getName();
                 else autoName = each.getName();
                 ContentValues cv = new ContentValues();
                 cv.put("id", id);
@@ -218,42 +218,6 @@ public class ReceiveListFragment extends ListFragment {
     private AdapterView.OnItemClickListener receiveList_ItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            final int pis = position;
-            final String savePath = dbM.getSavePath(getActivity());
-            final UserFunction uf = new UserFunction();
-            Thread thrd = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    final Context context = mContext;
-                    int position = pis;
-                    String path = r_list.get(position).getPath();
-                    final String id = r_list.get(position).getID();
-                    File file = new File(path);
-                    // 文件存在并可读
-                    if (file.exists() && file.canRead()) {
-                        String viewPath = savePath + File.separator + "view";
-                        File viewDir = new File(viewPath);
-                        uf.delete(viewDir);
-                        try {
-                            ZipUtils.unzip(file.getAbsolutePath(), viewPath);
-                        } catch (Exception e) {
-                            new AlertDialog.Builder(context).setTitle("错误")
-                                    .setMessage("尝试打开文件失败\n" + e.toString())
-                                    .setPositiveButton("确定", null).show();
-                            return;
-                        }
-                        File index = new File(savePath + File.separator + "view/index.html");
-                        Intent intent = new Intent();
-                        intent.setClass(context, WebViewActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("ListData", r_list.get(position));
-                        intent.putExtras(bundle);
-                        intent.putExtra("SFFlag", false);
-                        intent.setDataAndType(Uri.fromFile(index), "html");
-                        startActivity(intent);
-                    }
-                }
-            });
             if (cbShow) {
                 LVAdapter.ViewHolder holder = (LVAdapter.ViewHolder) view.getTag();
                 // 改变CheckBox的状态
@@ -261,10 +225,42 @@ public class ReceiveListFragment extends ListFragment {
                 // 将CheckBox的选中状况记录下来
                 mAdapter.map.put(position, holder.cb.isChecked());
             } else {
-                Toast.makeText(getActivity(), "正在解压缩文件，请稍后", Toast.LENGTH_LONG).show();
-                thrd.start();
-            }
+                final int pis = position;
+                final String savePath = dbM.getSavePath(getActivity());
+                final UserFunction uf = new UserFunction();
 
+                String path = r_list.get(position).getPath();
+                final File file = new File(path);
+                // 文件存在并可读
+                if (file.exists() && file.canRead()) {
+                    Thread thrd = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String viewPath = savePath + File.separator + "view";
+                            File viewDir = new File(viewPath);
+                            uf.delete(viewDir);
+                            try {
+                                ZipUtils.unzip(file.getAbsolutePath(), viewPath);
+                            } catch (Exception e) {
+                                Toast.makeText(mContext,"尝试打开文件失败\n" + e.toString(),Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            File index = new File(savePath + File.separator + "view/index.html");
+                            Intent intent = new Intent();
+                            intent.setClass(mContext, WebViewActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("ListData", r_list.get(pis));
+                            intent.putExtras(bundle);
+                            intent.putExtra("SFFlag", false);
+                            intent.setDataAndType(Uri.fromFile(index), "html");
+                            startActivity(intent);
+                        }
+                    });
+
+                    thrd.start();
+                }else
+                    Toast.makeText(getActivity(), "文件不存在，请检查文件有效性", Toast.LENGTH_LONG).show();
+            }
         }
     };
 

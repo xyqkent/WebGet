@@ -5,6 +5,6 @@
     android:layout_height="40dip"
     android:gravity="center_vertical|center"
     android:textSize="18sp"
-    android:textColor="#000"
+    android:textColor="@drawable/save_view_group_text_select"
     android:background="@drawable/save_view_group_item_select">
 </CheckedTextView>

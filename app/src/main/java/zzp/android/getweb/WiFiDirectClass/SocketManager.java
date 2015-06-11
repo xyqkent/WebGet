@@ -100,7 +100,7 @@ public class SocketManager {
             in.close();
             out.close();
             check.close();
-            SendMessage(4, str);
+            SendMessage(4, "已成功连接");
             return str;
         } catch (Exception e) {
             SendMessage(4, "握手失败" + e.toString());
@@ -131,13 +131,14 @@ public class SocketManager {
     public boolean ReceiveFile(String savePath) {
         try {
             String filePath;
-            Log.i("rec", "ReceiveFileTop");
+            Log.i("ReceiveFile", "ReceiveFileTop");
             //接收文件名
             Socket s = server.accept();
             ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
             ListData receive = (ListData) ois.readObject();
             ois.close();
             s.close();
+            Log.i("ReceiveFile", "正在接收:" + receive.getName());
             SendMessage(4, "正在接收:" + receive.getName());
             //接收文件数据
             Socket data = server.accept();
@@ -153,6 +154,7 @@ public class SocketManager {
             file.close();
             dataStream.close();
             data.close();
+            Log.i("ReceiveFile", receive.getName() + " 接收完成");
             SendMessage(4, receive.getName() + " 接收完成");
             Message.obtain(ReceiveListFragment.mHandler, 1, receive).sendToTarget();
             RunCount = 0;
@@ -170,38 +172,42 @@ public class SocketManager {
     public void SendFile(List<ListData> sends, String ipAddress) {
 
         try {
-            //TODO 超时跳出
             for (ListData send : sends) {
                 if (!sendFlag) break;
-                Log.i("sendfiles", send.getName());
-                s = new Socket(ipAddress, port);
-                s.setSoTimeout(5 * 1000);
-                ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
-                oos.writeObject(send);//写文件对象
-                oos.close();
-                s.close();
-                SendMessage(4, "正在发送" + send.getName());
-                Log.i("sendfiles", "正在发送" + send.getName());
+                File file = new File(send.getPath());
+                if (file.exists() && file.canRead()) {
+                    Log.i("sendfiles", send.getName());
+                    s = new Socket(ipAddress, port);
+                    s.setSoTimeout(5 * 1000);
+                    ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
+                    oos.writeObject(send);//写文件对象
+                    oos.close();
+                    s.close();
+                    SendMessage(4, "正在发送" + send.getName());
+                    Log.i("sendfiles", "正在发送" + send.getName());
 
-                data = new Socket(ipAddress, port);
-                data.setSoTimeout(5 * 1000);
-                OutputStream outputData = data.getOutputStream();
-                FileInputStream fileInput = new FileInputStream(send.getPath());
-                int size = -1;
-                byte[] buffer = new byte[1024];
-                while ((size = fileInput.read(buffer, 0, 1024)) != -1) {
-                    outputData.write(buffer, 0, size);
+                    data = new Socket(ipAddress, port);
+                    data.setSoTimeout(5 * 1000);
+                    OutputStream outputData = data.getOutputStream();
+                    FileInputStream fileInput = new FileInputStream(send.getPath());
+                    int size = -1;
+                    byte[] buffer = new byte[1024];
+                    while ((size = fileInput.read(buffer, 0, 1024)) != -1) {
+                        outputData.write(buffer, 0, size);
+                    }
+                    outputData.close();
+                    fileInput.close();
+                    data.close();
+                    SendMessage(4, send.getName() + " 发送完成");
+                    Message.obtain(SendListFragment.mHandler, 1, send).sendToTarget();//通知SendListFragment
+                    Log.i("sendfiles", send.getName() + " 发送完成");
+                } else {
+                    SendMessage(4, "发送" + send.getName() + "失败，已跳过");
                 }
-                outputData.close();
-                fileInput.close();
-                data.close();
-                SendMessage(4, send.getName() + " 发送完成");
-                Message.obtain(SendListFragment.mHandler, 1, send).sendToTarget();//通知SendListFragment
-                Log.i("sendfiles", send.getName() + " 发送完成");
             }
             if (sendFlag) {
-                SendMessage(4, sends.size() + "个所有文件发送完成");
-                Log.i("sendfiles", sends.size() + "个所有文件发送完成");
+                SendMessage(4, sends.size() + "个文件发送完成");
+                Log.i("sendfiles", sends.size() + "个文件发送完成");
             } else {
                 SendMessage(4, "发送文件错误");
                 Log.i("sendfiles", "发送文件错误");
