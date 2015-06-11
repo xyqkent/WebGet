@@ -103,7 +103,7 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         underPagerBackground = (LinearLayout) findViewById(R.id.underPagerBackground);
         //设置默认指示点
         initUnderPager();
-        serUnderPager(0);
+        setUnderPager(0);
         //利用viewpager做滑动界面
         viewPager = (ViewPager) findViewById(R.id.vPager);
         viewPager.setAdapter(new ViewPagerAdapter(lists));
@@ -128,7 +128,7 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
                     }
                     if (scrollStatus == 2 && distant == 0) {
                         nowPage = i;
-                        serUnderPager(i);
+                        setUnderPager(i);
                     }
                 }
 //                Log.i("onPageScrolled", "now:," + String.valueOf(i) + ",moverate:" + String.valueOf(v) + ",distant:" + String.valueOf(distant) + ",nowPage:" + String.valueOf(nowPage));
@@ -216,7 +216,7 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         }
     }
 
-    private void serUnderPager(int position) {
+    private void setUnderPager(int position) {
         for (int i = 0; i < lists.size(); i++) {
             Button currentBt = (Button) underPager.getChildAt(i);
             currentBt.getBackground().setAlpha(0);

@@ -224,9 +224,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     public void resetViews() {
         TextView view;
         view = (TextView) mContentView.findViewById(R.id.console);
-        view.setText(R.string.empty);
+        view.setText("");
         view = (TextView) mContentView.findViewById(R.id.status_text);
-        view.setText(R.string.empty);
+        view.setText("");
     }
 
     private void ConsoleMessage(String msg) {

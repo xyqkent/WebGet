@@ -43,26 +43,29 @@
 
     <string name="saveview_list_empty">该分组没内容</string>
 
-    <string name="wifi_direct_help1">1、请先开启WLAN Direct或WLAN直连功能（大部分手机均在开启WIFI后即会自动开启WLAN直连功能）</string>
-    <string name="wifi_direct_help2">2、两台手机一同按下搜索设备（互相搜索时能提高查找到设备的效率）。</string>
-    <string name="wifi_direct_help3">3、其中一方点击连接端中搜索到的设备，另一方接受接入申请（仅在第一次连接时出现），当本机上显示已连接，即成功。</string>
-    <string name="wifi_direct_help4">4、将界面切换到查看文章那栏，然后打开、长按或者多选文章均会见到“发送”按钮（仅在连接成功后出现该按钮）。</string>
-    <string name="wifi_direct_help5">5、发送成功后，发送端可在“已发送文件”中查看已发送的文件，接收端可在“已接受文件”中查看已接收的文件。</string>
-    <string name="wifi_direct_help6">6、接受文件后，按导入所有文件方能将文件导入到数据库中，文章列表才可看到文章（注意：在软件关闭后再次打开进入“已接收文件界面”，未导入的文件将会被清除）。</string>
+    <string name="wifi_direct_help1">请先开启WLAN Direct或WLAN直连功能（大部分手机均在开启WIFI后即会自动开启WLAN直连功能）</string>
+    <string name="wifi_direct_help2">两台手机一同按下搜索设备（互相搜索时能提高查找到设备的效率）。</string>
+    <string name="wifi_direct_help3">其中一方点击连接端中搜索到的设备，另一方接受接入申请（仅在第一次连接时出现），当本机上显示已连接，即成功。</string>
+    <string name="wifi_direct_help4">将界面切换到查看文章那栏，然后打开、长按或者多选文章均会见到“发送”按钮（仅在连接成功后出现该按钮）。</string>
+    <string name="wifi_direct_help5">发送成功后，发送端可在“已发送文件”中查看已发送的文件，接收端可在“已接受文件”中查看已接收的文件。</string>
+    <string name="wifi_direct_help6">接受文件后，按导入所有文件方能将文件导入到数据库中，文章列表才可看到文章（注意：在软件关闭后再次打开进入“已接收文件界面”，未导入的文件将会被清除）。</string>
+    <string name="step1">第一步：</string>
+    <string name="step2">第二步：</string>
+    <string name="step3">第三步：</string>
+    <string name="step4">第四步：</string>
+    <string name="step5">第五步：</string>
+    <string name="step6">第六步：</string>
+    <string name="wifi_direct_help1_1">这是WLAN Direct</string>
+    <string name="wifi_direct_help1_2">这是WLAN直连</string>
+    <string name="wifi_direct_help2_1">点击搜索设备</string>
+    <string name="wifi_direct_help3_1">点击连接端中搜索到的设备</string>
+    <string name="wifi_direct_help3_5">此状态即为连接成功</string>
+    <string name="wifi_direct_help4_1">多选、长按、进入页面后均能见到发送按钮</string>
+    <string name="wifi_direct_help6_1">导入后文件状态</string>
 
-
-	<string name="enable_p2p_button">P2P On/Off</string>
-    <string name="discover_peers_button">Discover</string>
-    <string name="connect_peer_button">Connect</string>
-    <string name="disconnect_peer_button">Disconnect</string>
-    <string name="get_file_button">Launch Gallery</string>
-    <string name="empty"></string>
-    <string name="yes">yes</string>
-    <string name="no">no</string>
     <string name="client_text">这是客户端</string>
     <string name="empty_message">暂未发现连接设备，请点击“搜索设备”按钮</string>
     <string name="p2p_off_warning">请在系统设置->无线网络中开启WLAN Direct或者WLAN直连</string>
-    <string name="group_owner_text">"Am I the Group Owner? "</string>
     <string name="label_me">本机</string>
     <string name="label_peers">连接端</string>
 </resources>
